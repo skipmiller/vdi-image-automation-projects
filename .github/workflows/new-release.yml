@@ -1,0 +1,60 @@
+name: "New release"
+
+# Environment variables
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# Controls when the action will run.
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-releases:
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # Import GPG key
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPGKEY }}
+          passphrase: ${{ secrets.GPGPASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_config_global: true
+          git_tag_gpgsign: true
+          git_push_gpgsign: false
+          git_committer_name: ${{ secrets.COMMIT_NAME }}
+          git_committer_email: ${{ secrets.COMMIT_EMAIL }}
+
+      # Package the scripts into an Intunewin file and zip
+      - name: New release package
+        shell: powershell
+        working-directory: "${{ github.workspace }}"
+        run: |
+          . .\ci\New-Package.ps1 -Verbose
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2.2.0
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          prerelease: true
+          fail_on_unmatched_files: true
+          body_path: ${{ github.workspace }}/releases/README.md
+          files: |
+            releases/Install-Defaults.intunewin
+            releases/Win32App.json
+            releases/image-customise.zip

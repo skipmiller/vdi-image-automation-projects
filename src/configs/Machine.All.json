@@ -1,0 +1,74 @@
+{
+    "MinimumBuild": "10.0.14393",
+    "MaximumBuild": "10.0.99999",
+    "Registry": {
+        "Type": "Direct",
+        "Set": [
+            {
+                "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer",
+                "name": "DisableEdgeDesktopShortcutCreation",
+                "value": 1,
+                "type": "DWord",
+                "note": "Prevents the Microsoft Edge short added to the public desktop"
+            },
+            {
+                "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes",
+                "name": "MS Shell Dlg",
+                "value": "Tahoma",
+                "type": "String",
+                "note": "Replaces the `MS Shell Dlg` font with `Tahoma` for UI consistency"
+            },
+            {
+                "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes",
+                "name": "MS Shell Dlg 2",
+                "value": "Tahoma",
+                "type": "String",
+                "note": "Replaces the `MS Shell Dlg 2` font with `Tahoma` for UI consistency"
+            },
+            {
+                "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location",
+                "name": "Value",
+                "value": "Allow",
+                "type": "String",
+                "note": "Enables location services"
+            }
+        ]
+    },
+    "Paths": {
+        "Remove": [
+            "C:\\Users\\Public\\Music\\Sample Music",
+            "C:\\Users\\Public\\Pictures\\Sample Pictures",
+            "C:\\Users\\Public\\Videos\\Sample Videos",
+            "C:\\Users\\Public\\Recorded TV\\Sample Media",
+            "C:\\Logs"
+        ]
+    },
+    "Features": {
+        "Disable": [
+            "Printing-XPSServices-Features",
+            "SMB1Protocol",
+            "WorkFolders-Client",
+            "FaxServicesClientPackage",
+            "WindowsMediaPlayer",
+            "MicrosoftWindowsPowerShellV2Root",
+            "MicrosoftWindowsPowerShellV2"
+        ]
+    },
+    "Capabilities": {
+        "Remove": [
+            "Media.WindowsMediaPlayer~~~~0.0.12.0",
+            "XPS.Viewer~~~~0.0.1.0"
+        ],
+        "OtherCapabilities": [
+            "App.Support.QuickAssist~~~~0.0.1.0",
+            "MathRecognizer~~~~0.0.1.0",
+            "Browser.InternetExplorer~~~~0.0.11.0",
+            "Print.Fax.Scan~~~~0.0.1.0"
+        ]
+    },
+    "Packages": {
+        "Remove": [
+            "Microsoft-Windows-MediaPlayer-Package*"
+        ]
+    }
+}

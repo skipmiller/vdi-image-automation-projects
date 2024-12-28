@@ -1,0 +1,36 @@
+{
+    "MinimumBuild": "10.0.14393",
+    "MaximumBuild": "10.0.99999",
+    "Registry": {
+        "Type": "Direct",
+        "Set": [
+            {
+                "path": "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer",
+                "name": "DisableEdgeDesktopShortcutCreation",
+                "value": 1,
+                "type": "DWord",
+                "note": "Prevents the Microsoft Edge short added to the public desktop"
+            },
+            {
+                "path": "HKLM:\\Software\\Policies\\Microsoft\\Windows\\CloudContent",
+                "name": "DisableWindowsConsumerFeatures",
+                "value": 1,
+                "type": "DWord",
+                "note": "Disables the Microsoft Windows consumer features"
+            }
+        ],
+        "Remove": [
+            {
+                "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Orchestrator\\UScheduler_Oobe\\DevHomeUpdate",
+                "note": "Removes the Dev Home app from the Windows Update Orchestrator to prevent automatic install"
+            },
+            {
+                "path": "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Orchestrator\\UScheduler_Oobe\\OutlookUpdate",
+                "note": "Removes the Outlook (new) app from the Windows Update Orchestrator to prevent automatic install"
+            }
+        ]
+    },
+    "Files": {
+        "Copy": []
+    }
+}

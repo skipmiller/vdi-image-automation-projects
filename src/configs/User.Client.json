@@ -1,0 +1,31 @@
+{
+    "MinimumBuild": "10.0.14393",
+    "MaximumBuild": "10.0.99999",
+    "StartMenu": {
+        "Type": "Client",
+        "Feature": "",
+        "Windows10": [
+            {
+                "Source": "start\\Windows10StartMenuLayout.xml",
+                "Destination": "C:\\Users\\Default\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml"
+            }
+        ],
+        "Windows11": [
+            {
+                "Source": "start\\Windows11StartMenuLayout.json",
+                "Destination": "C:\\Users\\Default\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.json"
+            },
+            {
+                "Source": "start\\Windows11TaskbarLayout.xml",
+                "Destination": "C:\\Users\\Default\\AppData\\Local\\Microsoft\\Windows\\Shell\\LayoutModification.xml"
+            },
+            {
+                "Source": "start\\Windows11Start.bin",
+                "Destination": "C:\\Users\\Default\\AppData\\Local\\Packages\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\LocalState\\start.bin"
+            }
+        ]
+    },
+    "Files": {
+        "Copy": []
+    }
+}
